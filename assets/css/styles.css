@@ -7,14 +7,16 @@
   /*Color mode HSL(hue, saturation, lightness)*/
   /*
       Blue: hsl(700, 100%, 59%)
+      Blue: hsl(214, 45, 35)
+
       Purple: hsl(250, 66%, 75%)
       Pink: hsl(356, 66%, 65%)
       Teal: hsl(174, 63%, 62%)
   */
 
-  --hue: 250;
-  --sat: 66%;
-  --lig: 70%;
+  --hue: 214;
+  --sat: 45%;
+  --lig: 38%;
   --first-color: hsl(var(--hue), var(--sat), var(--lig));
   --first-color-alt: hsl(var(--hue), var(--sat), 57%);
   /* -4% */
