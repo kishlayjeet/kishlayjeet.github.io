@@ -1,572 +1,209 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Welcome to Kishlay Jeet's Portfolio, showcasing my skills as a data engineer. Explore my work and contact me for collaborations.">
-    <meta name="keywords" content="Portfolio, Data Engineer, Kishlay Jeet">
-    <meta name="author" content="Kishlay Jeet">
+    <title>🎉 Advanced Birthday Flash Card 🎂</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-image: linear-gradient(to right, #fdcbf1, #a29bfe);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
 
-    <!--=============== FAVICON ===============-->
-    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+        .background-letters {
+            position: absolute;
+            font-size: 1em;
+            opacity: 0.05;
+            z-index: -1;
+            pointer-events: none;
+            animation: moveLetter 10s infinite linear;
+        }
 
-    <!--=============== REMIX ICONS ===============-->
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+        @keyframes moveLetter {
+            0% {
+                transform: translate(0, 0);
+            }
+            50% {
+                transform: translate(50px, 50px);
+            }
+            100% {
+                transform: translate(0, 0);
+            }
+        }
 
-    <!--=============== GOOGLE FONTS ===============-->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+        #birthday-card {
+            display: none; /* Initially hide the birthday card */
+            background-color: #f9f7f5;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            max-width: 50%; /* Adjusted for responsiveness */
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            animation: bounce 2s ease infinite, glow 2s linear infinite alternate;
+        }
 
-    <!--=============== CSS ===============-->
-    <link rel="stylesheet" href="assets/css/styles.css">
+        h1 {
+            color: #e44d26;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
 
-    <title>Kishlay Jeet - Data Engineer Portfolio</title>
+        p {
+            color: #333;
+            font-size: 1em;
+            margin: 10px 0;
+        }
+
+        #confetti-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .confetti-piece {
+            width: 12px;
+            height: 12px;
+            background-color: #ffd700;
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: confettiFall 3s infinite;
+        }
+
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 15px #e44d26;
+            }
+            100% {
+                box-shadow: 0 0 25px #e44d26, 0 0 40px #e44d26;
+            }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 600px) {
+            #birthday-card {
+                max-width: 90%;
+            }
+        }
+
+        #envelope {
+            font-size: 5em;
+            cursor: pointer;
+            position: fixed;
+            z-index: 2;
+            bottom: 44%;
+            left: 49%;
+            transform: translateX(-50%);
+        }
+    </style>
 </head>
-
 <body>
-    <!--=============== HEADER ===============-->
-    <header class="profile container">
-        <!-- Theme button -->
-        <i class="ri-moon-line change-theme" id="theme-button"></i>
-
-        <div class="profile__container grid">
-            <div class="profile__data">
-                <div class="profile__border">
-                    <div class="profile__perfil">
-                        <img src="assets/img/my-avatar.png" alt="Profile Picture">
-                    </div>
-                </div>
-
-                <h1 class="profile__name">Kishlay Jeet</h1>
-                <h2 class="profile__profession">Data Engineer</h2>
-
-                <ul class="profile__social">
-                    <li>
-                        <a href="https://www.instagram.com/kishlayjigar/" target="_blank" class="profile__social-link">
-                            <i class="ri-instagram-line"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://twitter.com/kishlayjigar/" target="_blank" class="profile__social-link">
-                            <i class="ri-twitter-line"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www.linkedin.com/in/kishlayjeet/" target="_blank" class="profile__social-link">
-                            <i class="ri-linkedin-box-line"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://github.com/kishlayjeet/" target="_blank" class="profile__social-link">
-                            <i class="ri-github-line"></i>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="profile__info">
-                <div class="profile__info-group">
-                    <p>Hello! This is Kishlay, a data engineer who is keen to learn new things, broaden his knowledge
-                        base, and take part in new projects that will help him understand more.</p>
-                </div>
-            </div>
-
-            <div class="profile__info grid">
-                <div class="profile__info-group">
-                    <h3 class="profile__info-number">SQL</h3>
-                    <p class="profile__info-description">Structured<br>Query<br>Language</p>
-                </div>
-                <div class="profile__info-group">
-                    <h3 class="profile__info-number">ETL</h3>
-                    <p class="profile__info-description">Extract<br>Transform<br>Load</p>
-                </div>
-                <div class="profile__info-group">
-                    <h3 class="profile__info-number">AWS</h3>
-                    <p class="profile__info-description">Amazon<br>Web<br>Services</p>
-                </div>
-            </div>
-
-            <div class="profile__buttons">
-                <!-- Downloadable CV  -->
-                <a download="" href="assets/pdf/Kishlay-Jeet-Cv.pdf" class="button">
-                    Download CV <i class="ri-download-line"></i>
-                </a>
-
-                <div class="profile__buttons-small">
-                    <a href="https://wa.me/917004066717?text=Hey Kishlay!" target="_blank"
-                        class="button button__small button__gray">
-                        <i class="ri-whatsapp-line"></i>
-                    </a>
-                    <a href="mailto:contact.kishlayjeet@gmail.com" class="button button__small button__gray">
-                        <i class="ri-mail-line"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!--=============== MAIN ===============-->
-    <main class="main">
-        <section class="filters container">
-            <!--=============== FILTERS TABS ===============-->
-            <ul class="filters__content">
-                <button class="filters__button filter-tab-active" data-target="#projects">
-                    Projects
-                </button>
-                <button class="filters__button" data-target="#skills">
-                    Skills
-                </button>
-            </ul>
-
-            <div class="filters__sections">
-                <!--=============== PROJECTS ===============-->
-                <div class="projects__content grid filters__active" data-content id="projects">
-                    <article class="projects__card">
-                        <!-- Insert your image in a rectangular format (Ex: 600 x 400, 1000 x 800, 1200 x 1000, etc) -->
-                        <img src="assets/img/project2.jpg" alt="" class="projects__img">
-
-                        <div class="projects__modal">
-                            <div>
-                                <span class="projects__subtitle">Extract Transform Load</span>
-                                <h3 class="projects__title">Stock Market Real-Time Data Pipeline</h3>
-                                <a href="https://github.com/kishlayjeet/Stock-Market-Real-Time-Data-Pipeline-with-Apache-Kafka-and-Cassandra"
-                                    class="projects__button button button__small">
-                                    <i class="ri-link"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="projects__card">
-                        <img src="assets/img/project1.jpg" alt="" class="projects__img">
-
-                        <div class="projects__modal">
-                            <div>
-                                <span class="projects__subtitle">Extract Transform Load</span>
-                                <h3 class="projects__title">Twitter Data Pipeline</h3>
-                                <a href="https://github.com/kishlayjeet/Twitter-Data-Pipeline-using-Airflow-and-AWS-S3"
-                                    class="projects__button button button__small">
-                                    <i class="ri-link"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="projects__card">
-                        <img src="assets/img/project1.jpg" alt="" class="projects__img">
-
-                        <div class="projects__modal">
-                            <div>
-                                <span class="projects__subtitle">Data Analysis</span>
-                                <h3 class="projects__title">Music Store Data Analysis</h3>
-                                <a href="https://github.com/kishlayjeet/Music-Store-Data-Analysis"
-                                    class="projects__button button button__small">
-                                    <i class="ri-link"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="projects__card">
-                        <img src="assets/img/project2.jpg" alt="" class="projects__img">
-
-                        <div class="projects__modal">
-                            <div>
-                                <span class="projects__subtitle">Web Scraping</span>
-                                <h3 class="projects__title">Github Featured Topics Data Scraping</h3>
-                                <a href="https://github.com/kishlayjeet/GitHub-Topics-Data-Scraping"
-                                    class="projects__button button button__small">
-                                    <i class="ri-link"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-
-                <!--=============== SKILLS ===============-->
-                <div class="skills__content grid" data-content id="skills">
-                    <!-- language -->
-                    <div class="skills__area">
-                        <h3 class="skills__title">Languages</h3>
-
-                        <div class="skills__box">
-                            <div class="skills__group">
-
-                                <div class="skills__data">
-                                    <i class="ri-checkbox-circle-line"></i>
-
-                                    <div>
-                                        <h3 class="skills__name">Python</h3>
-                                        <span class="skills__level">Intermediate</span>
-                                    </div>
-                                </div>
-
-                                <div class="skills__data">
-                                    <i class="ri-checkbox-circle-line"></i>
-
-                                    <div>
-                                        <h3 class="skills__name">Java</h3>
-                                        <span class="skills__level">Basic</span>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="skills__group">
-
-                                <div class="skills__data">
-                                    <i class="ri-checkbox-circle-line"></i>
-
-                                    <div>
-                                        <h3 class="skills__name">SQL</h3>
-                                        <span class="skills__level">Intermediate</span>
-                                    </div>
-                                </div>
-
-                                <div class="skills__data">
-                                    <i class="ri-checkbox-circle-line"></i>
-
-                                    <div>
-                                        <h3 class="skills__name">Shell Script</h3>
-                                        <span class="skills__level">Basic</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- databases -->
-                    <div class="skills__area">
-                        <h3 class="skills__title">Database</h3>
-
-                        <div class="skills__box">
-                            <div class="skills__group">
-                                <div class="skills__data">
-                                    <i class="ri-checkbox-circle-line"></i>
-
-                                    <div>
-                                        <h3 class="skills__name">MySQL</h3>
-                                        <span class="skills__level">Intermediate</span>
-                                    </div>
-                                </div>
-
-                                <div class="skills__data">
-                                    <i class="ri-checkbox-circle-line"></i>
-
-                                    <div>
-                                        <h3 class="skills__name">PostgreSQL</h3>
-                                        <span class="skills__level">Intermediate</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="skills__group">
-                                <div class="skills__data">
-                                    <i class="ri-checkbox-circle-line"></i>
-
-                                    <div>
-                                        <h3 class="skills__name">MongoDB</h3>
-                                        <span class="skills__level">Basic</span>
-                                    </div>
-                                </div>
-
-                                <div class="skills__data">
-                                    <i class="ri-checkbox-circle-line"></i>
-
-                                    <div>
-                                        <h3 class="skills__name">Apache Cassandra</h3>
-                                        <span class="skills__level">Basic</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- cloud -->
-                    <div class="skills__area">
-                        <h3 class="skills__title">Cloud Platform</h3>
-
-                        <div class="skills__box">
-                            <div class="skills__group">
-                                <div class="skills__data">
-                                    <i class="ri-checkbox-circle-line"></i>
-
-                                    <div>
-                                        <h3 class="skills__name">Amazon Web Services</h3>
-                                        <span class="skills__level">Basic</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- <div class="skills__group">
-                                <div class="skills__data">
-                                    <i class="ri-checkbox-circle-line"></i>
-
-                                    <div>
-                                        <h3 class="skills__name">Microsoft Azure</h3>
-                                        <span class="skills__level">In Progress</span>
-                                    </div>
-                                </div>
-                            </div> -->
-                        </div>
-                    </div>
-
-                    <!-- ml da -->
-                    <!-- <div class="skills__area">
-                        <h3 class="skills__title">ML/DA Library</h3>
-
-                        <div class="skills__box">
-                            <div class="skills__group">
-                                <div class="skills__data">
-                                    <i class="ri-checkbox-circle-line"></i>
-
-                                    <div>
-                                        <h3 class="skills__name">NumPy</h3>
-                                        <span class="skills__level">Intermediate</span>
-                                    </div>
-                                </div>
-
-                                <div class="skills__data">
-                                    <i class="ri-checkbox-circle-line"></i>
-
-                                    <div>
-                                        <h3 class="skills__name">Pandas</h3>
-                                        <span class="skills__level">Intermediate</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="skills__group">
-                                <div class="skills__data">
-                                    <i class="ri-checkbox-circle-line"></i>
-
-                                    <div>
-                                        <h3 class="skills__name">MatPlotLib</h3>
-                                        <span class="skills__level">Basic</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
-
-                    <!-- big data tools -->
-                    <div class="skills__area">
-                        <h3 class="skills__title">Big Data Tools</h3>
-
-                        <div class="skills__box">
-                            <div class="skills__group">
-
-                                <div class="skills__data">
-                                    <i class="ri-checkbox-circle-line"></i>
-
-                                    <div>
-                                        <h3 class="skills__name">Apache Spark</h3>
-                                        <span class="skills__level">Basic</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="skills__group">
-
-                                <div class="skills__data">
-                                    <i class="ri-checkbox-circle-line"></i>
-
-                                    <div>
-                                        <h3 class="skills__name">Apache Kafka</h3>
-                                        <span class="skills__level">Basic</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- data warehousing and lake -->
-                    <div class="skills__area">
-                        <h3 class="skills__title">Data Warehousing/Lake</h3>
-
-                        <div class="skills__box">
-                            <div class="skills__group">
-                                <div class="skills__data">
-                                    <i class="ri-checkbox-circle-line"></i>
-
-                                    <div>
-                                        <h3 class="skills__name">Amazon Redshift</h3>
-                                        <span class="skills__level">Basic</span>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="skills__group">
-                                <div class="skills__data">
-                                    <i class="ri-checkbox-circle-line"></i>
-
-                                    <div>
-                                        <h3 class="skills__name">AWS S3</h3>
-                                        <span class="skills__level">Basic</span>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- etl tools -->
-                    <div class="skills__area">
-                        <h3 class="skills__title">ETL Tools</h3>
-
-                        <div class="skills__box">
-                            <div class="skills__group">
-                                <div class="skills__data">
-                                    <i class="ri-checkbox-circle-line"></i>
-
-                                    <div>
-                                        <h3 class="skills__name">Apache Airflow</h3>
-                                        <span class="skills__level">Basic</span>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="skills__group">
-
-                                <div class="skills__data">
-                                    <i class="ri-checkbox-circle-line"></i>
-
-                                    <div>
-                                        <h3 class="skills__name">AWS Glue</h3>
-                                        <span class="skills__level">In Progress</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- data visualization -->
-                    <div class="skills__area">
-                        <h3 class="skills__title">Data Visualization</h3>
-
-                        <div class="skills__box">
-                            <div class="skills__group">
-                                <div class="skills__data">
-                                    <i class="ri-checkbox-circle-line"></i>
-
-                                    <div>
-                                        <h3 class="skills__name">PowerBI</h3>
-                                        <span class="skills__level">In Progress</span>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="skills__group">
-                                <div class="skills__data">
-                                    <i class="ri-checkbox-circle-line"></i>
-
-                                    <div>
-                                        <h3 class="skills__name">AWS QuickSight</h3>
-                                        <span class="skills__level">In Progress</span>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- other tools -->
-                    <div class="skills__area">
-                        <h3 class="skills__title">Other Tools</h3>
-
-                        <div class="skills__box">
-                            <div class="skills__group">
-                                <!-- <div class="skills__data">
-                                    <i class="ri-checkbox-circle-line"></i>
-
-                                    <div>
-                                        <h3 class="skills__name">Docker</h3>
-                                        <span class="skills__level">In Progress</span>
-                                    </div>
-                                </div> -->
-
-                                <div class="skills__data">
-                                    <i class="ri-checkbox-circle-line"></i>
-
-                                    <div>
-                                        <h3 class="skills__name">Git</h3>
-                                        <span class="skills__level">Intermediate</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="skills__group">
-                                <div class="skills__data">
-                                    <i class="ri-checkbox-circle-line"></i>
-
-                                    <div>
-                                        <h3 class="skills__name">Jupyter Notebook</h3>
-                                        <span class="skills__level">Intermediate</span>
-                                    </div>
-                                </div>
-
-                                <!-- <div class="skills__data">
-                                    <i class="ri-checkbox-circle-line"></i>
-
-                                    <div>
-                                        <h3 class="skills__name">Postman</h3>
-                                        <span class="skills__level">Basic</span>
-                                    </div>
-                                </div> -->
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- office tools -->
-                    <div class="skills__area">
-                        <h3 class="skills__title">Office Tools</h3>
-
-                        <div class="skills__box">
-                            <div class="skills__group">
-                                <div class="skills__data">
-                                    <i class="ri-checkbox-circle-line"></i>
-
-                                    <div>
-                                        <h3 class="skills__name">MS Word</h3>
-                                        <span class="skills__level">Basic</span>
-                                    </div>
-                                </div>
-
-                                <div class="skills__data">
-                                    <i class="ri-checkbox-circle-line"></i>
-
-                                    <div>
-                                        <h3 class="skills__name">MS PowerPoint</h3>
-                                        <span class="skills__level">Basic</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="skills__group">
-                                <div class="skills__data">
-                                    <i class="ri-checkbox-circle-line"></i>
-
-                                    <div>
-                                        <h3 class="skills__name">MS Excel</h3>
-                                        <span class="skills__level">Basic</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        </section>
-    </main>
-
-    <!--=============== FOOTER ===============-->
-    <footer class="footer container">
-        <span class="footer__copy">
-            Made with 💙 of Kishlay Jeet | All rights reserved.
-        </span>
-    </footer>
-
-    <!--=============== SCROLLREVEAL ===============-->
-    <script src="assets/js/scrollreveal.min.js"></script>
-
-    <!--=============== MAIN JS ===============-->
-    <script src="assets/js/main.js"></script>
+    <div class="background-letters" style="top: 7%; left: 7%;">kishlayjigar&#8482;</div>
+    <div class="background-letters" style="top: 21%; left: 91%;">kishlayjigar&#8482;</div>
+    <div class="background-letters" style="top: 35%; left: 21%;">kishlayjigar&#8482;</div>
+    <div class="background-letters" style="top: 49%; left: 77%;">&#169;kishlayjigar</div>
+    <div class="background-letters" style="top: 63%; left: 7%;">&#169;kishlayjigar</div>
+    <div class="background-letters" style="top: 77%; left: 91%;">&#169;kishlayjigar</div>
+    <div class="background-letters" style="top: 7%; left: 40%;">&#169;kishlayjigar</div>
+    <div class="background-letters" style="top: 49%; left: 50%;">&#169;kishlayjigar</div>
+    <div class="background-letters" style="top: 91%; left: 60%;">kishlayjigar&#8482;</div>
+
+    <!-- Envelope emoji to trigger the birthday card -->
+    <div id="envelope" onclick="checkPasscode()">💌</div>
+
+    <div id="confetti-container"></div>
+    <div id="birthday-card">
+        <h1>🎉 Happy Birthday, Superstar! 🎂</h1>
+        <p>On this special day, I want to shower you with wishes as bright as the confetti around us. May your life be filled with joy, laughter, and all the things that bring you happiness.</p><br>
+        <p>You are my superstar, and I wish for this year to be a spectacular chapter in your journey. May success and prosperity follow you in every step you take.</p>
+        <p>With lots of love and warmest wishes,</p>
+        <p>Your Peace & Anger 💖</p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.0/anime.min.js"></script>
+    <script>
+        function createConfetti() {
+            const confettiContainer = document.getElementById('confetti-container');
+            const colors = ['#e44d26', '#ffd700', '#32cd32', '#3498db', '#9b59b6'];
+
+            for (let i = 0; i < 100; i++) {
+                const confettiPiece = document.createElement('div');
+                confettiPiece.className = 'confetti-piece';
+                confettiPiece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confettiPiece.style.left = Math.random() * 100 + 'vw';
+                confettiPiece.style.animationDuration = Math.random() * 2 + 1 + 's';
+                confettiContainer.appendChild(confettiPiece);
+            }
+        }
+
+        function checkPasscode() {
+            const passcode = prompt('Enter the passcode:');
+            const correctPasscode = '21';
+
+            if (passcode === correctPasscode) {
+                const envelope = document.getElementById('envelope');
+                envelope.style.display = 'none';
+
+                const birthdayCard = document.getElementById('birthday-card');
+                birthdayCard.style.display = 'block';
+
+                createConfetti();
+
+                // Anime.js for additional animations
+                anime({
+                    targets: '#birthday-card',
+                    rotate: {
+                        value: 360,
+                        duration: 2000,
+                        easing: 'easeInOutQuad',
+                    },
+                    scale: {
+                        value: 1.05,
+                        duration: 1000,
+                        delay: 1000,
+                        easing: 'easeInOutQuad',
+                    },
+                    loop: true,
+                });
+            } else {
+                alert('Incorrect passcode. Try again.');
+            }
+        }
+    </script>
 </body>
-
 </html>
