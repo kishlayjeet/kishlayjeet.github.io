@@ -115,9 +115,21 @@
         }
 
         /* Responsive Styles */
+        @media (max-width: 768px) {
+            #envelope {
+                font-size: 4em;
+                bottom: 40%;
+            }
+        }
+
         @media (max-width: 600px) {
             #birthday-card {
                 max-width: 90%;
+            }
+
+            #envelope {
+                font-size: 3em;
+                bottom: 35%;
             }
         }
 
@@ -127,7 +139,7 @@
             position: fixed;
             z-index: 2;
             bottom: 44%;
-            left: 49%;
+            left: 50%;
             transform: translateX(-50%);
         }
     </style>
